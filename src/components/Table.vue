@@ -30,8 +30,13 @@
                         <td>{{ user.type }}</td>
                     </tr>
                 </tbody>
+                <tbody v-else>
+                    <tr>
+                        <td colspan="3">No data available to display!</td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center"  v-if="getPaginatedUsers.length > 0">
                 <button class="btn btn-sm btn-secondary" @click="movePages(-1)">
                     Back
                 </button>
