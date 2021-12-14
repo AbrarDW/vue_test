@@ -40,7 +40,7 @@
                 <button class="btn btn-sm btn-secondary" @click="movePages(-1)">
                     Back
                 </button>
-                <p>{{ currentPage }} out of {{ users.length / rowsPerPage }}</p>
+                <p>{{ currentPage }} out of {{ totalPage }}</p>
                 <button class="btn btn-sm btn-secondary" @click="movePages(1)">
                     Next
                 </button>
@@ -68,9 +68,10 @@ export default {
         );
         const ascending = ref(true);
         const sortColumn = ref("login");
-        const rowsPerPage = 10;
+        const rowsPerPage = 9;
         const startRow = ref(0);
         const currentPage = ref(1);
+        const totalPage = computed(() => (Math.ceil(users.value.length / rowsPerPage)))
 
         const sortTable = (col) => {
             if (sortColumn.value === col) {
@@ -97,7 +98,7 @@ export default {
 
             if (i === 1) {
                 let newPage = currentPage.value + 1;
-                if (newPage <= users.value.length / rowsPerPage) {
+                if (newPage <= totalPage.value) {
                     currentPage.value = newPage;
                 }
             } else {
@@ -122,6 +123,7 @@ export default {
             startRow,
             rowsPerPage,
             currentPage,
+            totalPage,
             sortTable,
             movePages,
         };

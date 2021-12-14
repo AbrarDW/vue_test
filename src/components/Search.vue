@@ -33,7 +33,7 @@ export default {
 
                     store.commit("setUsers", data);
                     store.dispatch("paginateUsers", {
-                        rowsPerPage: 10,
+                        rowsPerPage: 9,
                         currentPage: 1,
                     });
                     store.dispatch("sortUsers", {
